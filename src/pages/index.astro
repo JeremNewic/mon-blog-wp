@@ -1,5 +1,5 @@
 ---
-import Layout from '../components/Layout.astro';
+import Layout from '../components/layout/Layout.astro';
 import PostCard from '../components/PostCard.astro';
 import { getAllPosts } from '../lib/wordpress';
 
@@ -12,21 +12,15 @@ const posts = await getAllPosts(6);
   description="Découvrez nos derniers articles et actualités"
 >
   <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-          Bienvenue sur Mon Blog
+  <section class="bg-gradient-to-r from-pink-600 to-purple-800 text-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl font-bold mb-6">
+          Starter Kit Blog Astro & WordPress
         </h1>
-        <p class="text-xl md:text-2xl text-blue-100 mb-8">
-          Découvrez nos articles, conseils et actualités
+        <p class="text-xxl mb-10">
+          Starter kit moderne pour créer un blog performant et SEO friendly avec Astro et WordPress en tant que CMS headless.
         </p>
-        <a 
-          href="/blog" 
-          class="inline-block bg-white text-blue-600 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-colors"
-        >
-          Explorer le blog
-        </a>
       </div>
     </div>
   </section>
@@ -49,25 +43,4 @@ const posts = await getAllPosts(6);
     </div>
   </section>
 
-  <!-- Section "À propos" -->
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-          À propos de nous
-        </h2>
-        <p class="text-lg text-gray-600 leading-relaxed mb-8">
-          Nous sommes passionnés par le partage de contenus de qualité. 
-          Notre mission est de vous apporter des informations pertinentes et inspirantes 
-          sur des sujets qui vous intéressent.
-        </p>
-        <a 
-          href="/about" 
-          class="inline-block text-blue-600 font-semibold hover:text-blue-700 transition-colors"
-        >
-          En savoir plus →
-        </a>
-      </div>
-    </div>
-  </section>
 </Layout>

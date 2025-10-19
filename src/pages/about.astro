@@ -1,0 +1,91 @@
+---
+import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants'
+import Layout from '@/components/layout/Layout.astro'
+
+// Ces données pourraient venir de WordPress ou d'un CMS
+const pageData = {
+  hero: {
+    title: `À propos de ${SITE_NAME}`,
+    description: SITE_DESCRIPTION,
+    image: '/images/about-hero.jpg'
+  },
+  sections: [
+    {
+      title: 'Notre Histoire',
+      content: 'Contenu de la section histoire...',
+      image: '/images/about-history.jpg'
+    },
+    {
+      title: 'Notre Mission',
+      content: 'Contenu de la section mission...',
+      image: '/images/about-mission.jpg'
+    }
+  ],
+  team: [
+    {
+      name: 'John Doe',
+      role: 'Fondateur',
+      image: '/images/team/john.jpg'
+    }
+    // Ajouter plus de membres
+  ]
+}
+---
+
+<Layout 
+  title={`À propos - ${SITE_NAME}`}
+  description="Découvrez notre histoire et notre équipe"
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl font-bold mb-6">{pageData.hero.title}</h1>
+        <p class="text-xl text-gray-600">{pageData.hero.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Sections -->
+  {pageData.sections.map((section, index) => (
+    <section class={`py-16 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div class={index % 2 === 0 ? 'order-1' : 'order-2'}>
+            <h2 class="text-3xl font-bold mb-6">{section.title}</h2>
+            <div class="prose prose-lg">{section.content}</div>
+          </div>
+          <div class={index % 2 === 0 ? 'order-2' : 'order-1'}>
+            <img 
+              src={section.image} 
+              alt={section.title}
+              class="rounded-lg shadow-lg"
+              width={600}
+              height={400}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Team Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Notre Équipe</h2>
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {pageData.team.map(member => (
+          <div class="text-center">
+            <img 
+              src={member.image} 
+              alt={member.name}
+              class="w-32 h-32 rounded-full mx-auto mb-4"
+            />
+            <h3 class="font-bold text-xl">{member.name}</h3>
+            <p class="text-gray-600">{member.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

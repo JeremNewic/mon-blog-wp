@@ -7,6 +7,11 @@ export default defineConfig({
   site: 'http://localhost:4321', 
    vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '@': '/src/',
+      },
+    },
   },
   integrations: [
     sitemap({

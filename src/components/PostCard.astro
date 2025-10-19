@@ -1,12 +1,28 @@
 ---
+import WordPressImage from './WordPressImage.astro';
+
+interface Props {
+  post: {
+    title: string;
+    excerpt: string;
+    featuredImage: string;
+    imageWidth: number;
+    imageHeight: number;
+    slug: string;
+    date: string;
+  };
+}
 const { post } = Astro.props;
+
 ---
 
 <article class="bg-white rounded-lg shadow-md overflow-hidden">
   {post.featuredImage && (
-    <img 
-      src={post.featuredImage} 
+    <WordPressImage
+      src={post.featuredImage}
       alt={post.title}
+      width={post.imageWidth}
+      height={post.imageHeight}
       class="w-full h-48 object-cover"
     />
   )}
