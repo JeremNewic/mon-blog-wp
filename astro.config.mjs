@@ -12,6 +12,11 @@ export default defineConfig({
         '@': '/src/',
       },
     },
+    server: {
+      watch: {
+        usePolling: true, 
+      },
+    },
   },
   integrations: [
     sitemap({
