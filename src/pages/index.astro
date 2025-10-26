@@ -3,8 +3,20 @@ import Layout from '../components/layout/Layout.astro';
 import PostCard from '../components/PostCard.astro';
 import { getAllPosts } from '../lib/wordpress';
 
+// Vérifie si l'URL de l'API est définie
+const baseUrl = import.meta.env.PUBLIC_WP_API_URL;
+
+if (!baseUrl) {
+  console.error('PUBLIC_WP_API_URL is not defined. Please set it in your environment variables.');
+}
+
 // Initialisation des posts
-const posts = await getAllPosts(6);
+let posts = [];
+try {
+  posts = baseUrl ? await getAllPosts(6) : [];
+} catch (error) {
+  console.error('Erreur lors de la récupération des articles :', error);
+}
 ---
 
 <Layout 

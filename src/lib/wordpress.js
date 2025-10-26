@@ -1,4 +1,4 @@
-const WORDPRESS_API_URL = `${import.meta.env.PUBLIC_WORDPRESS_URL}/wp-json/wp/v2`;
+const WORDPRESS_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/startertestjerem.wordpress.com';
 
 export async function getAllPosts(limit = 6) {
   const response = await fetch(
