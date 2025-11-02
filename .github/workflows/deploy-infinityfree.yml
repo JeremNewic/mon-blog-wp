@@ -1,8 +1,8 @@
-name: Deploy to InfinityFree (Test Solution 1)
+name: Deploy to InfinityFree 
 
 on:
   push:
-    branches: [test-solution-1]
+    branches: [test-mep]
 
 jobs:
   deploy:
