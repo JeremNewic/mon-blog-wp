@@ -1,4 +1,4 @@
-const WORDPRESS_API_URL = import.meta.env.PUBLIC_WP_API_URL || 'https://astrostarterkit.42web.io/wordpress/wp-json/wp/v2/posts';
+const WORDPRESS_API_URL = import.meta.env.PUBLIC_WP_API_URL || 'https://astrostarterkit.42web.io/wordpress/wp-json/wp/v2';
 
 export async function getAllPosts(limit = 6) {
   try {
