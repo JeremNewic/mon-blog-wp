@@ -1,46 +1,38 @@
 ---
+
 import Layout from '../components/layout/Layout.astro';
+import FeaturedArticle from '../components/FeaturedArticle.astro';
 import PostCard from '../components/PostCard.astro';
 import { getAllPosts } from '../lib/wordpress';
 
-// Initialisation des posts
+// Récupération des articles
 const posts = await getAllPosts(6);
+const featuredPost = posts[0]; // Premier article comme article à la une
+const otherPosts = posts.slice(1); // Les autres articles
 ---
 
 <Layout 
   title="Accueil" 
   description="Découvrez nos derniers articles et actualités"
 >
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-pink-600 to-purple-800 text-white py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-5xl font-bold mb-6">
-          Starter Kit Blog Astro & WordPress
-        </h1>
-        <p class="text-xxl mb-10">
-          Starter kit moderne pour créer un blog performant et SEO friendly avec Astro et WordPress en tant que CMS headless.
-        </p>
+  <!-- Article à la une -->
+  {featuredPost && (
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <FeaturedArticle article={featuredPost} />
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
-  <!-- Section Articles -->
+  <!-- Liste des articles -->
   <section class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-8">Derniers Articles</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {Array.isArray(posts) && posts.length > 0 ? (
-          posts.map((post) => (
-            <PostCard post={post} />
-          ))
-        ) : (
-          <p class="col-span-3 text-center text-gray-600">
-            Aucun article disponible pour le moment.
-          </p>
-        )}
+        {otherPosts.map((post) => (
+          <PostCard post={post} />
+        ))}
       </div>
     </div>
   </section>
-
 </Layout>
