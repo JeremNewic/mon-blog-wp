@@ -15,13 +15,5 @@ export async function getAllPosts(limit = 6) {
     featuredImage: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
     imageWidth: post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.width || 800,
     imageHeight: post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.height || 600,
-    readingTime: calculateReadingTime(post.content.rendered),
   }));
-}
-
-function calculateReadingTime(content) {
-  const wordsPerMinute = 200;
-  const words = content.split(/\s+/).length;
-  const minutes = Math.ceil(words / wordsPerMinute);
-  return `${minutes} min`;
 }
