@@ -4,7 +4,7 @@ on:
   push:
     branches: [test-mep]
   repository_dispatch:    
-    types: [wordpress-update
+    types: [wordpress-update]
 
 jobs:
   deploy:
