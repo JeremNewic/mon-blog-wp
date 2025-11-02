@@ -1,4 +1,4 @@
-const WORDPRESS_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/startertestjerem.wordpress.com';
+const WORDPRESS_API_URL = 'https://astrostarterkit.42web.io/wordpress/wp-json/wp/v2/posts';
 
 export async function getAllPosts(limit = 6) {
   const response = await fetch(
@@ -12,10 +12,16 @@ export async function getAllPosts(limit = 6) {
     slug: post.slug,
     excerpt: post.excerpt.rendered,
     date: post.date,
-    // Récupération de l'image mise en avant
     featuredImage: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
-    // Dimensions de l'image
     imageWidth: post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.width || 800,
     imageHeight: post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.height || 600,
+    readingTime: calculateReadingTime(post.content.rendered),
   }));
+}
+
+function calculateReadingTime(content) {
+  const wordsPerMinute = 200;
+  const words = content.split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min`;
 }
