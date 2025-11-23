@@ -1,6 +1,4 @@
 ---
-import WordPressImage from './WordPressImage.astro';
-
 interface Props {
   post: {
     title: string;
@@ -10,6 +8,7 @@ interface Props {
     imageHeight: number;
     slug: string;
     date: string;
+    readingTime: string;
   };
 }
 const { post } = Astro.props;
@@ -18,12 +17,13 @@ const { post } = Astro.props;
 
 <article class="bg-white rounded-lg shadow-md overflow-hidden">
   {post.featuredImage && (
-    <WordPressImage
+    <img
       src={post.featuredImage}
       alt={post.title}
       width={post.imageWidth}
       height={post.imageHeight}
       class="w-full h-48 object-cover"
+      loading="lazy"
     />
   )}
   <div class="p-6">

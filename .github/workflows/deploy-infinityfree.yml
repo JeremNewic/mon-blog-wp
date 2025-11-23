@@ -1,8 +1,10 @@
-name: Deploy to InfinityFree (Test Solution 1)
+name: Deploy to InfinityFree 
 
 on:
   push:
-    branches: [test-solution-1]
+    branches: [test-mep]
+  repository_dispatch:    
+    types: [wordpress-update]
 
 jobs:
   deploy:
@@ -23,7 +25,7 @@ jobs:
       - name: Build site
         run: npm run build
         env:
-          PUBLIC_WP_API_URL: https://astrostarterkit.42web.io/wordpress/wp-json/wp/v2/posts
+          PUBLIC_WP_API_URL: https://astrostarterkit.42web.io/wordpress/wp-json/wp/v2
           PUBLIC_SITE_URL: https://astrostarterkit.42web.io
 
       - name: Deploy via FTP
