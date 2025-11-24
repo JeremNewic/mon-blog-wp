@@ -81,3 +81,73 @@ export async function getPostBySlug(slug) {
     return null;
   }
 }
+
+export async function getCategories() {
+  try {
+    const response = await fetch(`${WORDPRESS_API_URL}/categories?per_page=100`);
+    if (!response.ok) {
+      throw new Error(`Erreur API: ${response.status} ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur lors de la récupération des catégories:', error);
+    return [];
+  }
+}
+
+export async function getPostsByCategory(categoryId, limit = 10) {
+  try {
+    const response = await fetch(
+      `${WORDPRESS_API_URL}/posts?categories=${categoryId}&per_page=${limit}&_embed`
+    );
+    if (!response.ok) {
+      throw new Error(`Erreur API: ${response.status} ${response.statusText}`);
+    }
+    const posts = await response.json();
+    
+    if (!Array.isArray(posts)) {
+      return [];
+    }
+    
+    return posts.map(post => ({
+      id: post.id,
+      title: post.title?.rendered || 'Sans titre',
+      slug: post.slug || 'article',
+      excerpt: post.excerpt?.rendered || '',
+      date: post.date || '',
+      featuredImage: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+      imageWidth: post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.width || 800,
+      imageHeight: post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.height || 600,
+      readingTime: calculateReadingTime(post.content?.rendered || ''),
+    }));
+  } catch (error) {
+    console.error('Erreur lors de la récupération des posts par catégorie:', error);
+    return [];
+  }
+}
+
+export async function getTags() {
+  try {
+    const response = await fetch(`${WORDPRESS_API_URL}/tags?per_page=100`);
+    if (!response.ok) {
+      throw new Error(`Erreur API: ${response.status} ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur lors de la récupération des tags:', error);
+    return [];
+  }
+}
+
+export async function getPages() {
+  try {
+    const response = await fetch(`${WORDPRESS_API_URL}/pages?per_page=100`);
+    if (!response.ok) {
+      throw new Error(`Erreur API: ${response.status} ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur lors de la récupération des pages:', error);
+    return [];
+  }
+}

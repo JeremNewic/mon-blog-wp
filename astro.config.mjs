@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'http://localhost:4321', 
-   vite: {
+  vite: {
     plugins: [tailwindcss()],
     resolve: {
       alias: {
@@ -26,10 +26,10 @@ export default defineConfig({
   ],
   image: {
     // Permet d'optimiser les images depuis WordPress
-    domains: ['mon-blog-wp.local'], 
+    domains: ['starterkit-blog.local'], 
     remotePatterns: [{
       protocol: 'http',
-      hostname: 'mon-blog-wp.local',
+      hostname: 'starterkit-blog.local',
     }],
   },
   output: 'static', // Génération statique pour performance maximale
