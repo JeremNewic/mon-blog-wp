@@ -203,4 +203,4 @@ MIT
 
 ---
 
-Créé avec ❤️ par [Votre Nom](https://github.com/votre-username)
+Créé avec ❤️ par [Jeremy Medina](https://github.com/JeremNewic)
