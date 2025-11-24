@@ -4,7 +4,7 @@ Un starter kit moderne et performant pour créer des sites rapides avec Astro et
 
 ## ✨ Fonctionnalités
 
-- 🚀 **Astro 4** - Framework ultra-rapide avec génération statique
+- 🚀 **Astro 5** - Framework ultra-rapide avec génération statique
 - 📝 **WordPress Headless** - Utilise WordPress comme CMS via l'API REST
 - 🎨 **Tailwind CSS** - Framework CSS utilitaire pour un design moderne
 - 🖼️ **Optimisation d'images** - Gestion intelligente des images WordPress
@@ -24,7 +24,7 @@ Un starter kit moderne et performant pour créer des sites rapides avec Astro et
 
 1. **Cloner le projet**
    ```bash
-   git clone https://github.com/votre-username/mon-blog-wp.git
+   git clone https://github.com/votre-username/Starterkit-Astro-WP.git
    cd mon-blog-wp
    ```
 
